@@ -6,6 +6,8 @@
 
 # misc
 config.py
+data/imgs/*
+!data/imgs/.gitkeep
 .DS_Store
 .env
 .env.local
