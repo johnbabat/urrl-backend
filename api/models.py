@@ -1,8 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from datetime import datetime
 from uuid import uuid4
 
 db = SQLAlchemy()
+migrate = Migrate()
 
 def get_uuid():
     return uuid4().hex

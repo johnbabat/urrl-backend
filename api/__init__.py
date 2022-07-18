@@ -1,9 +1,9 @@
 import os
 from flask import Flask, jsonify, make_response, redirect, url_for
 from flask_jwt_extended import JWTManager, get_jwt_identity, jwt_required, create_access_token, set_access_cookies, unset_access_cookies
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from api.config import ApplicationConfig
-from api.models import db
+from api.models import db, migrate
 from api.utils import stats
 
 from api.routes.auth import auth
@@ -37,6 +37,7 @@ def create_app(test_config=None):
     jwt = JWTManager(app)
 
     db.init_app(app)
+    migrate.init_app(app, db)
 
     with app.app_context():
         db.create_all()
