@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from api.models import db, User, Url, Visit
-from api.utils.helpers import sanitize_long_url, sanitize_short_url, generate_short_url, validate_make_private
+from app.models import db, User, Url, Visit
+from app.utils.helpers import sanitize_long_url, sanitize_short_url, generate_short_url, validate_make_private
 
 
 url = Blueprint("url", __name__, url_prefix="/api/v1/url")
