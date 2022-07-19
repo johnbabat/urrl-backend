@@ -13,6 +13,6 @@ class ApplicationConfig:
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=5)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
-    SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
+    SQLALCHEMY_DATABASE_URI = os.environ["GCP_DATABASE_URL"]
     MAX_CONTENT_LENGTH = 10 * 1024 * 1024
     FRONTEND=os.environ['FRONTEND']
