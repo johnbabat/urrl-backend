@@ -1,7 +1,7 @@
 import re
 import string
 import random
-from api.models import Url
+from app.models import Url
 
 def validate_name(name):
     return type(name) == str and len(name) > 1
