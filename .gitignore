@@ -5,7 +5,6 @@
 # production
 
 # misc
-config.py
 data/imgs/*
 !data/imgs/.gitkeep
 .DS_Store
