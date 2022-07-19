@@ -1,7 +1,7 @@
 from pydoc import doc
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from app.models import db, User, Visit, Document
+from api.models import db, User, Visit, Document
 
 
 document = Blueprint("document", __name__, url_prefix="/api/v1/document")

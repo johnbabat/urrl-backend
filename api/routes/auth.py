@@ -4,8 +4,8 @@ from flask import Blueprint, jsonify, request, make_response
 from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token, get_jwt_identity, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.models import db, User
-from app.utils.helpers import validate_password, validate_name, validate_email
+from api.models import db, User
+from api.utils.helpers import validate_password, validate_name, validate_email
 
 
 auth = Blueprint("auth", __name__, url_prefix="/api/v1/auth")

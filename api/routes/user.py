@@ -6,8 +6,8 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func, desc, asc
-from app.models import db, User, Url, Visit, Document
-from app.utils.helpers import validate_password, validate_name, validate_email, number_to_month
+from api.models import db, User, Url, Visit, Document
+from api.utils.helpers import validate_password, validate_name, validate_email, number_to_month
 
 
 user = Blueprint("user", __name__, url_prefix="/api/v1/user")

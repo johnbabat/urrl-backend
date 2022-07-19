@@ -2,14 +2,14 @@ import os
 from flask import Flask, jsonify, make_response, redirect, url_for
 from flask_jwt_extended import JWTManager, get_jwt_identity, jwt_required, create_access_token, set_access_cookies, unset_access_cookies
 from flask_cors import CORS
-from app.config import ApplicationConfig
-from app.models import db, migrate
-from app.utils import stats
+from api.config import ApplicationConfig
+from api.models import db, migrate
+from api.utils import stats
 
-from app.routes.auth import auth
-from app.routes.user import user
-from app.routes.url import url
-from app.routes.document import document
+from api.routes.auth import auth
+from api.routes.user import user
+from api.routes.url import url
+from api.routes.document import document
 
 
 # TODO: If a url has not been visited in a long time (> 6months) and was not craeted by a registered user, Allow it to be reassigned
