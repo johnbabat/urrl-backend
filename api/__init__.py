@@ -34,6 +34,7 @@ def create_app(test_config=None):
     app = Flask(__name__)
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
     app.config['JWT_COOKIE_SECURE'] = True
+    app.config['SESSION_COOKIE_SECURE'] = True
     app.config['JWT_COOKIE_SAMESITE'] = None
     CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": [ApplicationConfig.FRONTEND]}})
     app.config.from_object(ApplicationConfig)
