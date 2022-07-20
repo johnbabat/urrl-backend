@@ -32,7 +32,9 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     app = Flask(__name__)
-    print(app.config)
+    app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+    app.config['JWT_COOKIE_SECURE'] = True
+    app.config['JWT_COOKIE_SAMESITE'] = None
     CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": [ApplicationConfig.FRONTEND]}})
     app.config.from_object(ApplicationConfig)
     jwt = JWTManager(app)
@@ -43,6 +45,9 @@ def create_app(test_config=None):
     with app.app_context():
         db.create_all()
 
+    print(app.config)
+    print(app.config['JWT_COOKIE_SECURE'])
+    print(app.config['JWT_COOKIE_SAMESITE'])
 
 
     @jwt.unauthorized_loader
