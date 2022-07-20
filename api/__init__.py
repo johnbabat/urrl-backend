@@ -32,6 +32,7 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     app = Flask(__name__)
+    print(app.config)
     CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": [ApplicationConfig.FRONTEND]}})
     app.config.from_object(ApplicationConfig)
     jwt = JWTManager(app)
