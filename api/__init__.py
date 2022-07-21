@@ -43,42 +43,23 @@ def create_app(test_config=None):
     with app.app_context():
         db.create_all()
 
-    print(app.config)
-    print(app.config['JWT_COOKIE_SECURE'])
-    print(app.config['JWT_COOKIE_SAMESITE'])
-
 
     @jwt.unauthorized_loader
     def unauthorized_callback(callback):
         # No auth header
-        print('not alooweddddd')
         response = make_response(jsonify({'error': "not authorized"}), 401)
         return response
 
     @jwt.invalid_token_loader
     def invalid_token_callback(jwt_header, jwt_payload):
-        print('not valid')
         # Invalid Fresh/Non-Fresh Access token in auth header
         response = make_response(jsonify({'error': 'invalid credentials'}), 401)
         unset_access_cookies(response)
         return response
 
-    # @jwt.expired_token_loader
-    # @jwt_required()
-    # def expired_token_callback(jwt_header, jwt_payload):
-    #     print('needs refresh')
-    #     # Expired auth header
-    #     user_id = get_jwt_identity()
-    #     access_token = create_access_token(identity=str(user_id))
-    #     response = make_response(jsonify({'refresh': True}), 200)
-    #     unset_access_cookies(response)
-    #     set_access_cookies(response, access_token)
-
-    #     return response
     
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
-        print('needs refresh')
         # Expired auth header
         response = make_response(redirect(url_for('refresh')))
         unset_access_cookies(response)
@@ -87,7 +68,6 @@ def create_app(test_config=None):
     @app.get('/token/refresh')
     @jwt_required(refresh=True)
     def refresh():
-        print('refresh token func')
         # Refreshing expired Access token
         user_id = get_jwt_identity()
         access_token = create_access_token(identity=str(user_id))
@@ -99,7 +79,6 @@ def create_app(test_config=None):
 
     # Routes
     @app.route('/api/v1/')
-    @jwt_required()
     def welcome():
         return jsonify({ 'message': 'Welcome to Urrl' })
 

@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func, desc, asc
 from api.models import db, User, Url, Visit, Document
-from api.utils.helpers import validate_password, validate_name, validate_email, number_to_month
+from api.utils.helpers import get_file_extension, validate_password, validate_name, validate_email, number_to_month
 
 
 user = Blueprint("user", __name__, url_prefix="/api/v1/user")
@@ -190,7 +190,8 @@ def edit_user():
 
         if avatar:
             # filename = secure_filename(user_id + avatar.filename)
-            filename = secure_filename(user_id)
+            file_extension = get_file_extension(avatar.filename)
+            filename = secure_filename(user_id + file_extension)
             avatar.save(os.path.join('data/imgs', filename))
 
             with open(os.path.join('data/imgs', filename), 'rb') as binary_file:

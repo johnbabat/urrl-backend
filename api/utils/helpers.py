@@ -11,6 +11,13 @@ def validate_email(email):
         return None
     return True
 
+def get_file_extension(filename):
+    try:
+        ext = re.search("\.[a-z]{2,5}$", filename).group()
+    except:
+        ext = ''
+    return ext
+
 def validate_password(password):
     return type(password) == str and len(password) >= 3
 
